@@ -12,9 +12,9 @@ async function validUserId (req, res, next){
 //en body preguntar el id de la segunda persona con quien se tuvo el chat
 
 async function chatUsers(req,res,next){
-    const{usera, userb} = req.body
-    // const post = awa
-    if (usera){
+    const{userb} = req.body
+    const{usera} = req.params
+    if (usera && userb){
         next()
     } else {
         res.status(401).send({message:'User not authorised'})

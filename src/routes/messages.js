@@ -16,11 +16,10 @@ router.get('/', async (req, res)=>{
 
 router.post('/', async (req, res)=>{ //authMiddlewares.chatUsers
     try{
-        const {usera, userb} = req.body
-        const user = await Message.findOne({user: userb})
-        // if(!user || user[0].password != password){
-        //     res.status(401).send({message:'Password invalid'})
-        // }
+        const message = req.body
+        const newChat = await Message.create(message)
+        newChat.save()
+        res.status(201).send({message:newChat})
     }
     catch (error){
         res.status(200).send({message:'Login success', data:'token'})
